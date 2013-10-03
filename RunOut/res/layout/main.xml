@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:id="@+id/main_linear_layout_super"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_alignParentTop="true"
+    android:layout_alignParentLeft="true">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:id="@+id/main_linear_layout_sub"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:visibility="visible"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true">
+
+        <TextView
+            android:layout_marginTop="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="0"
+            android:id="@+id/calorie"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentStart="false"
+            android:layout_alignParentTop="true"
+            style="@style/main_text_calorie_counter" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Calorie(cal)"
+            android:id="@+id/textView9"
+            style="@style/main_text_calorie_sub_label"
+            android:layout_below="@+id/calorie" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            android:layout_column="0"
+            style="@style/separator20dp" />
+
+        <TableLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_alignParentStart="false"
+            android:orientation="horizontal"
+            android:clickable="false">
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:weightSum="2" >             
+
+                <Chronometer
+                    android:id="@+id/chronometerCounter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/main_text_counters"
+                    android:format="%s"
+                    android:layout_weight="1"
+                    android:textSize="30sp" />
+
+                <TextView
+                    android:id="@+id/speedCounter"
+                    style="@style/main_text_counters"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="0" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:weightSum="2"
+                android:layout_height="fill_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Chronometer(s)"
+                    android:id="@+id/textView"
+                    style="@style/main_text_sublabel" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Speed(m/s)"
+                    android:id="@+id/textView4"
+                    style="@style/main_text_sublabel" />
+            </TableRow>
+
+
+            <TableRow
+                android:layout_marginTop="20dp"
+                android:weightSum="2"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:layout_weight="1"
+                    android:id="@+id/textView6"
+                    style="@style/main_text_counters" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:layout_weight="1"
+                    android:id="@+id/textView8"
+                    style="@style/main_text_counters" />
+            </TableRow>
+
+            <TableRow
+                android:weightSum="2"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Distance(m)"
+                    android:id="@+id/textView2"
+                    style="@style/main_text_sublabel" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tempo(s/m)"
+                    android:id="@+id/textView3"
+                    android:layout_weight="1"
+                    style="@style/main_text_sublabel" />
+
+            </TableRow>
+
+
+        </TableLayout>
+
+        <Space
+            android:layout_width="20dp"
+            android:layout_height="60dp" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/linearButtons"
+                android:weightSum="2"
+                android:clickable="false">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="PAUSE"
+                    android:id="@+id/main_pause_button"
+                    android:layout_gravity="left|top"
+                    style="@style/main_pause_button"
+                    android:layout_alignParentStart="true"
+                    android:clickable="true" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:text="STOP"
+                    android:id="@+id/main_stop_button_pause"
+                    android:layout_alignParentEnd="true"
+                    style="@style/main_stop_button"
+                    android:layout_weight="1"
+                    android:layout_alignParentStart="false"
+                    android:layout_gravity="right"
+                    android:clickable="true" />
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/linearButtons2"
+                android:weightSum="2"
+                android:clickable="false">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="RESUME"
+                    android:layout_weight="1"
+                    android:id="@+id/main_resume_button"
+                    style="@style/main_resume_button"
+                    android:clickable="true" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:text="STOP"
+                    android:id="@+id/main_stop_button_resume"
+                    android:layout_alignParentEnd="true"
+                    style="@style/main_stop_button"
+                    android:layout_weight="1"
+                    android:layout_alignParentStart="false"
+                    android:layout_gravity="right"
+                    android:clickable="true" />
+            </LinearLayout>
+
+
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:text="START"
+                android:id="@+id/main_start_button"
+                android:layout_gravity="center_horizontal"
+                style="@style/main_start_button"
+                android:layout_alignBottom="@+id/linearButtons"
+                android:layout_alignParentLeft="true"
+                android:clickable="true" />
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>

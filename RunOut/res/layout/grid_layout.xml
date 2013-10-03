@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp" >
+
+    <Spinner
+        android:id="@+id/dates"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true" />
+
+    <Chronometer
+        android:id="@+id/chronometerid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:format="%s"
+        android:textSize="50sp" />
+
+    <Button
+        android:id="@+id/start_button"
+        android:layout_width="500dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/chronometerid"
+        android:text="@string/start" />
+    <Button
+        android:id="@+id/pause_button"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/chronometerid"
+        android:text="@string/pause"
+        android:visibility="invisible" />      
+    <Button
+        android:id="@+id/stop_button"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/pause_button"
+        android:layout_below="@+id/chronometerid"
+        android:text="@string/stop"
+        android:visibility="invisible" />
+    <Button
+        android:id="@+id/resume_button"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/chronometerid"
+        android:text="@string/resume"
+        android:visibility="invisible" />
+
+</RelativeLayout>

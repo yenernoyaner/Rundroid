@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Burn Calories</string>
+    <string name="action_settings">SETTINGS</string>
+    <string name="action_log_out">LOG OUT</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
+    <string name="reminder">Reminder</string>
+    <string name="pause">Pause</string>
+    <string name="resume">Resume</string>
+    <string name="login_warning">must provide user info</string> 
+    <string-array name="items">
+        <item>SELECT BOOKMARK TYPE</item>
+        <item>TYPE-1</item>
+        <item>TYPE-2</item>
+        <item>TYPE-3</item>
+    </string-array>
+
+</resources>
