@@ -119,10 +119,31 @@ public class DBAdapterForUser
         return mCursor;
     }
     
-    public Cursor getLastUser() throws SQLException{
-    	 String selectQuery = "SELECT * FROM user WHERE _id = (SELECT MAX(_id) FROM user);";
+ 
+    
+    public User getLastUser() throws SQLException{
+    	 String selectQuery = "SELECT * FROM user where _id = (select max(_id) from user);";
     	 Cursor cursor = db.rawQuery(selectQuery, null);
-    	 return cursor;
+    	 User user = null;
+    	 if(cursor.moveToFirst()){
+    		user = this.buildUserFromCursor(cursor);
+    	 }
+    	 
+    	 return user;
+    }
+    
+    public User buildUserFromCursor(Cursor c){
+    	User user = null;
+    	if(c!=null){
+    		user = new User();
+    		user.setId(c.getLong(0));
+    		user.setUsername(c.getString(1));
+    		user.setName(c.getString(2));
+    		user.setSurname(c.getString(3));
+    		user.setTall(c.getString(4));
+    		user.setWeight(c.getString(5));
+    	}
+    	return user;
     }
 
     //---updates a user---

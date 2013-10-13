@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.preference.PreferenceManager;
@@ -26,23 +27,30 @@ import android.widget.Toast;
 
 public class RegistrationActivity extends Activity implements OnClickListener {
     
-	DBAdapterForUser adapter ;
-	User user ;
+	DBAdapterForUser adapter ; 
+	User user = new User();
 	NumberPicker numberPickerForTall;
 	NumberPicker numberPickerForWeight;
 	boolean  userSaved = false;
-	 
-	// SharedPreferences preferences = this.getSharedPreferences("loginfirsttime",Context.MODE_PRIVATE);
-	// Editor editor = preferences.edit();
 	
-	
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);        
-        setContentView(R.layout.registration);       
-        adapter = new DBAdapterForUser(getApplicationContext());; 
-        user  = new User();    
-        adapter.open();        
+    	 
+    	adapter = new DBAdapterForUser(getApplicationContext());	
+    	adapter.open();   
+    	SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+    	String userloggedin = preferences.getString("userloggedin", "false");
+    	if(userloggedin.equals("true")){
+    		 user = (User) adapter.getLastUser(); 	
+    		 Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+             intent.putExtra("com.syyazilim.runout.currentuser", user);
+             startActivity(intent);   
+    	}
+    	
+    	 super.onCreate(savedInstanceState);      
+        setContentView(R.layout.registration); 
+             
       
         ((Button) findViewById(R.id.signup)).setOnClickListener(this);
         /*numberPickerForTall.setMinValue(100);
@@ -55,10 +63,9 @@ public class RegistrationActivity extends Activity implements OnClickListener {
     public void onClick(View view) {
         if (view != null) {
             switch (view.getId()) {
-                case R.id.signup:                  
-                  
-                    userSaved = saveUserToDB();
-                    if(userSaved){
+                case R.id.signup:     
+                    userSaved = saveUserToDBandSharedPreferences();
+                    if(userSaved){  
                     	 Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                          intent.putExtra("com.syyazilim.runout.currentuser", user);
                          startActivity(intent);                   
@@ -79,7 +86,7 @@ public class RegistrationActivity extends Activity implements OnClickListener {
     	  adapter.close();
     }
     
-    public boolean saveUserToDB() {
+    public boolean saveUserToDBandSharedPreferences() {
     	try {	  
     		 String userName = ((TextView)findViewById(R.id.editText)).getText().toString();
     		 String name = ((TextView)findViewById(R.id.editText2)).getText().toString();
@@ -97,8 +104,11 @@ public class RegistrationActivity extends Activity implements OnClickListener {
 	         user.setTall(((TextView)findViewById(R.id.editText5)).getText().toString());
 	         adapter.insertUser(user.getUsername(), user.getName(), user.getSurname(), user.getWeight(), user.getTall());
 	         adapter.close();
-	        
-	 
+	         SharedPreferences sharedPreferences = PreferenceManager
+                     .getDefaultSharedPreferences(this);
+             Editor editor = sharedPreferences.edit();
+             editor.putString("userloggedin", "true");
+             editor.commit();   
 	       
     	} catch (Exception e) {
     		e.printStackTrace();

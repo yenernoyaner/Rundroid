@@ -119,13 +119,13 @@ public class ResultActivity extends Activity implements View.OnClickListener {
     private void redirect(Class clazz){
     	DBAdapterForUser adapterForUser = new DBAdapterForUser(getApplicationContext());
     	adapterForUser.open();
-    	Cursor userCursor  = adapterForUser.getLastUser();
+    	User currentUser  = adapterForUser.getLastUser();
     	adapterForUser.close();
     	User user = new User();
-    	user.setId(Long.valueOf(userCursor.getString(userCursor.getColumnIndex("_id"))));
-    	user.setName(userCursor.getString(userCursor.getColumnIndex("name")));
-    	user.setSurname(userCursor.getString(userCursor.getColumnIndex("surname")));
-    	user.setUsername(userCursor.getString(userCursor.getColumnIndex("username")));
+    	user.setId(currentUser.getId());
+    	user.setName(currentUser.getName());
+    	user.setSurname(currentUser.getSurname());
+    	user.setUsername(currentUser.getSurname());
         Intent intent = new Intent(getApplicationContext(), clazz);
         intent.putExtra("com.syyazilim.runout.currentuser",user);
         startActivity(intent);
