@@ -1,4 +1,4 @@
-package com.syyazilim.runout;
+package com.syyazilim.runout.utility;
 
 import android.app.AlertDialog;
 import android.app.Service;
@@ -14,7 +14,7 @@ import android.provider.Settings;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.syyazilim.runout.MainActivity;
+import com.syyazilim.runout.activity.MainActivity;
 public class GPSTracker extends Service implements LocationListener {
 
 	private final Context mContext;	

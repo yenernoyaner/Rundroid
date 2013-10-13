@@ -1,4 +1,4 @@
-package com.syyazilim.runout;
+package com.syyazilim.runout.domain;
 
 import java.io.Serializable;
 

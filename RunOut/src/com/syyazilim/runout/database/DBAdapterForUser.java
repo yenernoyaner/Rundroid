@@ -1,4 +1,6 @@
-package com.syyazilim.runout;
+package com.syyazilim.runout.database;
+
+import com.syyazilim.runout.domain.User;
 
 import android.content.ContentValues;
 import android.content.Context;

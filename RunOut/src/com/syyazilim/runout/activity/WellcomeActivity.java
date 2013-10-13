@@ -1,4 +1,4 @@
-package com.syyazilim.runout;
+package com.syyazilim.runout.activity;
 
 import android.app.ActionBar;
 import android.app.AlertDialog;
@@ -19,6 +19,8 @@ import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.SubMenu;
+import com.syyazilim.runout.R;
+import com.syyazilim.runout.R.layout;
 
 public class WellcomeActivity extends SherlockActivity {
 

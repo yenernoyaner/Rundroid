@@ -1,4 +1,4 @@
-package com.syyazilim.runout;
+package com.syyazilim.runout.utility;
 
 import android.location.Address;
 import android.location.Location;

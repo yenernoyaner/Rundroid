@@ -1,4 +1,9 @@
-package com.syyazilim.runout;
+package com.syyazilim.runout.activity;
+
+import com.syyazilim.runout.R;
+import com.syyazilim.runout.R.id;
+import com.syyazilim.runout.R.layout;
+import com.syyazilim.runout.R.menu;
 
 import android.app.Activity;
 import android.app.AlertDialog;

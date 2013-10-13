@@ -1,4 +1,4 @@
-package com.syyazilim.runout;
+package com.syyazilim.runout.database;
 
 import android.content.ContentValues;
 import android.content.Context;

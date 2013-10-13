@@ -1,4 +1,4 @@
-package com.syyazilim.runout;
+package com.syyazilim.runout.activity;
 
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
@@ -28,6 +28,15 @@ import com.actionbarsherlock.internal.widget.IcsSpinner;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.SubMenu;
+import com.syyazilim.runout.R;
+import com.syyazilim.runout.R.anim;
+import com.syyazilim.runout.R.id;
+import com.syyazilim.runout.R.layout;
+import com.syyazilim.runout.R.raw;
+import com.syyazilim.runout.domain.User;
+import com.syyazilim.runout.domain.UserSession;
+import com.syyazilim.runout.utility.Distance;
+import com.syyazilim.runout.utility.GPSTracker;
 
 public class MainActivity extends SherlockActivity implements View.OnClickListener {
 
@@ -226,32 +235,29 @@ public class MainActivity extends SherlockActivity implements View.OnClickListen
 
 	private void showCountDownDialog(View dialogView, String message) {
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-
 		builder.setView(dialogView);
 		builder.setInverseBackgroundForced(true);
 		countDownDialog = builder.create();
-
 		countDownDialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
-
 		countDownDialog.show();
-
 	}
 
 	private void showCountDownDialog(View dialogView) {
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-
 		builder.setView(dialogView);
-
 		builder.setInverseBackgroundForced(true);
-
 		countDownDialog = builder.create();
-
 		TextView textView = new TextView(this);
-
 		countDownDialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
 		countDownDialog.getWindow().requestFeature(Window.FEATURE_NO_TITLE);
-
 		countDownDialog.show();
-
 	}
+	
+	@Override
+	  public void onBackPressed() {
+	   super.onBackPressed();
+	   
+	   }
+	
+		
 }
