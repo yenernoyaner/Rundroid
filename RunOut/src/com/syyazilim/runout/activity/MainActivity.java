@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.SystemClock;
 import android.view.Gravity;
 import android.view.View;
@@ -39,7 +40,8 @@ import com.syyazilim.runout.utility.Distance;
 import com.syyazilim.runout.utility.GPSTracker;
 
 public class MainActivity extends SherlockActivity implements View.OnClickListener {
-
+     
+	private Handler handler = new Handler();
 	private AlertDialog countDownDialog;
     private UserSession userSession;
 	private Chronometer chronometer;
@@ -132,12 +134,20 @@ public class MainActivity extends SherlockActivity implements View.OnClickListen
 				} else {
 					gps.showSettingsAlert();
 				}
-				if (gps.canGetLocation()) {
+				if (gps.canGetLocation()) {		
 					MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.countdown);
-					mp.start();
+					mp.start();	
 					redirect(CountDownActivity.class);
-					chronometer.setBase(SystemClock.elapsedRealtime());
-					chronometer.start();
+					handler.postDelayed(new Runnable() {
+						
+			            @Override
+			            public void run() {		            	
+			            	chronometer.setBase(SystemClock.elapsedRealtime());
+							chronometer.start();	
+			                
+			            }
+			        },3000);
+					
 
 					view.setVisibility(View.INVISIBLE);
 					((Button) findViewById(R.id.main_stop_button_pause)).setVisibility(View.VISIBLE);
@@ -255,8 +265,7 @@ public class MainActivity extends SherlockActivity implements View.OnClickListen
 	
 	@Override
 	  public void onBackPressed() {
-	   super.onBackPressed();
-	   
+	   super.onBackPressed();	   
 	   }
 	
 		

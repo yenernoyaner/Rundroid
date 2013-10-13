@@ -1,7 +1,5 @@
 package com.syyazilim.runout.activity;
 
-
-
 import com.syyazilim.runout.R;
 import com.syyazilim.runout.R.id;
 import com.syyazilim.runout.R.layout;
@@ -29,9 +27,6 @@ import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
-//import com.google.android.gms.common.ConnectionResult;
-//import com.google.android.gms.common.GooglePlayServicesClient;
-
 public class RegistrationActivity extends Activity implements OnClickListener {
     
 	DBAdapterForUser adapter ; 
@@ -53,17 +48,14 @@ public class RegistrationActivity extends Activity implements OnClickListener {
     		 Intent intent = new Intent(getApplicationContext(),MainActivity.class);
              intent.putExtra("com.syyazilim.runout.currentuser", user);
              startActivity(intent);   
+             this.finish();
     	}
     	
     	 super.onCreate(savedInstanceState);      
         setContentView(R.layout.registration); 
              
       
-        ((Button) findViewById(R.id.signup)).setOnClickListener(this);
-        /*numberPickerForTall.setMinValue(100);
-        numberPickerForTall.setMaxValue(230);
-        numberPickerForWeight.setMinValue(35);
-        numberPickerForWeight.setMaxValue(150);*/
+        ((Button) findViewById(R.id.signup)).setOnClickListener(this);      
     }
 
     @Override
