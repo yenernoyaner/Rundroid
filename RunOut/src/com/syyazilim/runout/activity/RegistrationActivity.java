@@ -96,11 +96,11 @@ public class RegistrationActivity extends Activity implements OnClickListener {
     			 Toast.makeText(getApplicationContext(), R.string.login_warning, 20).show();
     			 return false;
     		 }  
-	         user.setUsername(((TextView)findViewById(R.id.editText)).getText().toString());
-	         user.setName(((TextView)findViewById(R.id.editText2)).getText().toString());
-	         user.setSurname(((TextView)findViewById(R.id.editText3)).getText().toString());
-	         user.setWeight(((TextView)findViewById(R.id.editText4)).getText().toString());
-	         user.setTall(((TextView)findViewById(R.id.editText5)).getText().toString());
+	         user.setUsername(userName);
+	         user.setName(name);
+	         user.setSurname(surname);
+	         user.setWeight(weight);
+	         user.setTall(tall);
 	         adapter.insertUser(user.getUsername(), user.getName(), user.getSurname(), user.getWeight(), user.getTall());
 	         adapter.close();
 	         SharedPreferences sharedPreferences = PreferenceManager

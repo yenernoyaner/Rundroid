@@ -12,9 +12,6 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.provider.Settings;
 import android.util.Log;
-import android.widget.Toast;
-
-import com.syyazilim.runout.activity.MainActivity;
 public class GPSTracker extends Service implements LocationListener {
 
 	private final Context mContext;	
@@ -26,13 +23,11 @@ public class GPSTracker extends Service implements LocationListener {
 	Location previousLocaiton;
 	Location startLocation;
 	double latitude; 
-	double longitude;
-
-	
+	double longitude;	
 	float currentDistance;
 	float currentSpeed;
 	// The minimum distance to change Updates in meters
-	private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 5; // 5 meters
+	private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 1; // 5 meters
 
 	// The minimum time between updates in milliseconds
 	private static final long MIN_TIME_BW_UPDATES = 1000 * 1 * 1; // 1 sec

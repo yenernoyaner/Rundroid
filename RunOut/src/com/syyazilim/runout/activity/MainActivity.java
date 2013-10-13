@@ -47,11 +47,10 @@ public class MainActivity extends SherlockActivity implements View.OnClickListen
 	private Chronometer chronometer;
 	private long timeWhenStopped = 0;
 	private int resultCode = 1;
+	private String burnedCalories="220";
 	Distance distance = new Distance();
 	GPSTracker gps;
 
-	static final String[] COUNTRIES = new String[] { "Afghanistan", "Albania", "Algeria", "American Samoa", "Andorra", "Angola", "Anguilla",
-			"Canada", "France", "Spain" };
 
 	@SuppressLint("NewApi")
 	@Override
@@ -76,7 +75,7 @@ public class MainActivity extends SherlockActivity implements View.OnClickListen
 				String mm = m < 10 ? "0" + m : m + "";
 				String ss = s < 10 ? "0" + s : s + "";
 				cArg.setText(hh + ":" + mm + ":" + ss);
-
+                
 			}
 		});
 		chronometer.setBase(SystemClock.elapsedRealtime());
@@ -137,18 +136,16 @@ public class MainActivity extends SherlockActivity implements View.OnClickListen
 				if (gps.canGetLocation()) {		
 					MediaPlayer mp = MediaPlayer.create(getApplicationContext(), R.raw.countdown);
 					mp.start();	
-					redirect(CountDownActivity.class);
-					handler.postDelayed(new Runnable() {
-						
-			            @Override
-			            public void run() {		            	
-			            	chronometer.setBase(SystemClock.elapsedRealtime());
-							chronometer.start();	
-			                
-			            }
-			        },3000);
 					
-
+					redirect(CountDownActivity.class);
+					handler.postDelayed(new Runnable() {						
+			            @Override
+			            public void run() {
+			            	chronometer.setBase(SystemClock.elapsedRealtime());
+							chronometer.start();
+			            }
+			        },3000);					
+                    
 					view.setVisibility(View.INVISIBLE);
 					((Button) findViewById(R.id.main_stop_button_pause)).setVisibility(View.VISIBLE);
 					((Button) findViewById(R.id.main_stop_button_resume)).setVisibility(View.VISIBLE);
@@ -171,16 +168,18 @@ public class MainActivity extends SherlockActivity implements View.OnClickListen
 				break;
 			case R.id.main_stop_button_resume:
 				chronometer.stop();
-				timeWhenStopped = 0;
-				chronometer.setBase(timeWhenStopped);
+				chronometer.setBase(SystemClock.elapsedRealtime() + timeWhenStopped);
 				((Button) findViewById(R.id.main_start_button)).setVisibility(View.VISIBLE);
 				((Button) findViewById(R.id.main_pause_button)).setVisibility(View.INVISIBLE);
 				((Button) findViewById(R.id.main_stop_button_resume)).setVisibility(View.INVISIBLE);
 				((Button) findViewById(R.id.main_stop_button_pause)).setVisibility(View.INVISIBLE);
 				userSession = new UserSession();
-				userSession.setDistance(String.valueOf(gps.getCurrentDistance()));
-				userSession.setSpeed(String.valueOf(gps.getCurrentSpeed()));
+				userSession.setCalories(burnedCalories);
 				userSession.setTime(String.valueOf(chronometer.getBase()));
+				userSession.setSpeed(String.valueOf(gps.getCurrentSpeed()));
+				userSession.setDistance(String.valueOf(gps.getCurrentDistance()));
+				userSession.setTempo(String.valueOf((Double.parseDouble(userSession.getTime())/Double.parseDouble(userSession.getDistance()))));
+				
 				redirect(ResultActivity.class);
 				break;
 			case R.id.main_pause_button:

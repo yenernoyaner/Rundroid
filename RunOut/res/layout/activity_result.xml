@@ -33,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Calorie(cal)"
-            android:id="@+id/textView9"
+            android:id="@+id/calorieLabel"
             style="@style/main_text_calorie_sub_label"
             android:layout_below="@+id/calorie" />
 
@@ -84,7 +84,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Chronometer(s)"
-                    android:id="@+id/textView"
+                    android:id="@+id/chronometerLabel"
                     style="@style/main_text_sublabel" />
 
                 <TextView
@@ -92,7 +92,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Speed(m/s)"
-                    android:id="@+id/textView4"
+                    android:id="@+id/speedLabel"
                     style="@style/main_text_sublabel" />
             </TableRow>
 
@@ -108,7 +108,7 @@
                     android:layout_height="wrap_content"
                     android:text="0"
                     android:layout_weight="1"
-                    android:id="@+id/textView6"
+                    android:id="@+id/distance"
                     style="@style/main_text_counters" />
 
                 <TextView
@@ -116,7 +116,7 @@
                     android:layout_height="wrap_content"
                     android:text="0"
                     android:layout_weight="1"
-                    android:id="@+id/textView8"
+                    android:id="@+id/tempo"
                     style="@style/main_text_counters" />
             </TableRow>
 
@@ -130,14 +130,14 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Distance(m)"
-                    android:id="@+id/textView2"
+                    android:id="@+id/distanceLabel"
                     style="@style/main_text_sublabel" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Tempo(s/m)"
-                    android:id="@+id/textView3"
+                    android:id="@+id/tempoLabel"
                     android:layout_weight="1"
                     style="@style/main_text_sublabel" />
 

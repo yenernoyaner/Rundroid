@@ -1,15 +1,5 @@
 package com.syyazilim.runout.activity;
 
-import com.syyazilim.runout.R;
-import com.syyazilim.runout.R.anim;
-import com.syyazilim.runout.R.id;
-import com.syyazilim.runout.R.layout;
-import com.syyazilim.runout.R.menu;
-import com.syyazilim.runout.database.DBAdapterForUser;
-import com.syyazilim.runout.database.DBAdapterForUserSession;
-import com.syyazilim.runout.domain.User;
-import com.syyazilim.runout.domain.UserSession;
-
 import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.app.ActionBar;
@@ -23,10 +13,15 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.database.Cursor;
+
+import com.syyazilim.runout.R;
+import com.syyazilim.runout.database.DBAdapterForUser;
+import com.syyazilim.runout.database.DBAdapterForUserSession;
+import com.syyazilim.runout.domain.User;
+import com.syyazilim.runout.domain.UserSession;
 
 public class ResultActivity extends Activity implements View.OnClickListener {
 
@@ -36,7 +31,7 @@ public class ResultActivity extends Activity implements View.OnClickListener {
         setContentView(R.layout.activity_result);
         ((Button) findViewById(R.id.result_save_button)).setOnClickListener(this);
         ((Button) findViewById(R.id.result_cancel_button)).setOnClickListener(this);
-
+       
         ActionBar actionBar = getActionBar();
         actionBar.hide();
 
@@ -45,12 +40,10 @@ public class ResultActivity extends Activity implements View.OnClickListener {
         LinearLayout linearLayoutSuper = (LinearLayout) findViewById(R.id.result_linear_layout_super);
 
         ObjectAnimator colorFadeSuper = ObjectAnimator.ofObject(linearLayoutSuper, "backgroundColor", new ArgbEvaluator(), Color.argb(255, 90, 255, 250), 0xFFFFFF);
-        //ObjectAnimator colorFadeSub = ObjectAnimator.ofObject(linearLayoutSub, "visibility", new ArgbEvaluator(), View.VISIBLE);
-
-        colorFadeSuper.setDuration(5000);
-        //colorFadeSub.setDuration(3000);
+       
+        colorFadeSuper.setDuration(3000);        
         colorFadeSuper.start();
-        //colorFadeSub.start();
+       
 
         Animation animFadeIn = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_in);
         linearLayoutSub.setVisibility(View.VISIBLE);
@@ -60,26 +53,13 @@ public class ResultActivity extends Activity implements View.OnClickListener {
         TextView resultMessageView = (TextView)findViewById(R.id.result_message);
         resultMessageView.setVisibility(View.VISIBLE);
         resultMessageView.startAnimation(animMove);
-
-/*
-        (new Thread() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(3000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                TextView resultMessageView = (TextView)findViewById(R.id.result_message);
-                Animation animFadeOut = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.move2);
-                resultMessageView.setVisibility(View.INVISIBLE);
-                resultMessageView.startAnimation(animFadeOut);
-                //overridePendingTransition(R.anim.fade_out, R.anim.deneme_anim);
-
-            }
-        }).start();*/
-
-
+        UserSession session = (UserSession) getIntent().getExtras().getSerializable("com.syyazilim.runout.currentusersession");
+        ((TextView) findViewById(R.id.calorie)).setText(session.getCalories().toString());
+        ((TextView)findViewById(R.id.chronometerCounter)).setText(session.getTime().toString());
+        ((TextView)findViewById(R.id.speedCounter)).setText(session.getSpeed());
+        ((TextView)findViewById(R.id.distance)).setText(session.getDistance());
+        ((TextView)findViewById(R.id.tempo)).setText(session.getTempo());
+        
     }
 
     @Override
