@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:id="@+id/session_history_detail"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_alignParentTop="true"
+    android:layout_alignParentLeft="true">
+
+   
+        <TextView
+            android:layout_marginTop="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="0"
+            android:id="@+id/calorie"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentStart="false"
+            android:layout_alignParentTop="true"
+            style="@style/main_text_calorie_counter" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Calorie(cal)"
+            android:id="@+id/calorieLabel"
+            style="@style/main_text_calorie_sub_label"
+            android:layout_below="@+id/calorie" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            android:layout_column="0"
+            style="@style/separator20dp" />
+
+        <TableLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_alignParentStart="false"
+            android:orientation="horizontal"
+            android:clickable="false">
+
+            <TableRow
+                android:weightSum="2"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="00:00:00"
+                    android:layout_weight="1"
+                    android:id="@+id/chronometerCounter"
+                    style="@style/main_text_counters" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="0"
+                    android:id="@+id/speedCounter"
+                    style="@style/main_text_counters" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:weightSum="2"
+                android:layout_height="fill_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Chronometer(s)"
+                    android:id="@+id/chronometerLabel"
+                    style="@style/main_text_sublabel" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Speed(m/s)"
+                    android:id="@+id/speedLabel"
+                    style="@style/main_text_sublabel" />
+            </TableRow>
+
+
+            <TableRow
+                android:layout_marginTop="20dp"
+                android:weightSum="2"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:layout_weight="1"
+                    android:id="@+id/distance"
+                    style="@style/main_text_counters" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:layout_weight="1"
+                    android:id="@+id/tempo"
+                    style="@style/main_text_counters" />
+            </TableRow>
+
+            <TableRow
+                android:weightSum="2"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Distance(m)"
+                    android:id="@+id/distanceLabel"
+                    style="@style/main_text_sublabel" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tempo(s/m)"
+                    android:id="@+id/tempoLabel"
+                    android:layout_weight="1"
+                    style="@style/main_text_sublabel" />
+
+            </TableRow>
+
+
+        </TableLayout>
+
+       
+
+    
+
+   
+</LinearLayout>

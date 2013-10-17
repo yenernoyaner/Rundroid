@@ -90,19 +90,11 @@ public class ResultActivity extends Activity implements View.OnClickListener {
         if (view != null) {
             switch (view.getId()) {
                 case R.id.result_save_button:
-                	saveSessionToDB();
-                   /* view.setVisibility(View.INVISIBLE);
-                   ((Button) findViewById(R.id.main_stop_button_pause)).setVisibility(View.VISIBLE);
-                    ((Button) findViewById(R.id.main_stop_button_resume)).setVisibility(View.VISIBLE);
-                    ((Button) findViewById(R.id.main_pause_button)).setVisibility(View.VISIBLE);
-                    ((Button) findViewById(R.id.main_resume_button)).setVisibility(View.INVISIBLE);*/
+                	saveSessionToDB();    
+                	redirect(MainActivity.class);
                     break;
                 case R.id.result_cancel_button:
-                	redirect(MainActivity.class);
-                    /*((Button) findViewById(R.id.main_start_button)).setVisibility(View.VISIBLE);
-                    ((Button) findViewById(R.id.main_pause_button)).setVisibility(View.INVISIBLE);
-                    ((Button) findViewById(R.id.main_stop_button_resume)).setVisibility(View.INVISIBLE);
-                    ((Button) findViewById(R.id.main_stop_button_pause)).setVisibility(View.INVISIBLE);*/
+                	redirect(MainActivity.class);                    
             }
         }
     }
@@ -115,7 +107,7 @@ public class ResultActivity extends Activity implements View.OnClickListener {
     	user.setId(currentUser.getId());
     	user.setName(currentUser.getName());
     	user.setSurname(currentUser.getSurname());
-    	user.setUsername(currentUser.getSurname());
+    	user.setUsername(currentUser.getUsername());
         Intent intent = new Intent(getApplicationContext(), clazz);
         intent.putExtra("com.syyazilim.runout.currentuser",user);
         startActivity(intent);
@@ -127,7 +119,7 @@ public class ResultActivity extends Activity implements View.OnClickListener {
     		 DBAdapterForUserSession adapter = new DBAdapterForUserSession(getApplicationContext());    	       
     	     adapter.open();
 	         adapter.insertUserSession(userSession.getCalories(), userSession.getSpeed(), userSession.getDistance(),
-	        		    userSession.getTempo(), userSession.getTime());
+	        		    userSession.getTempo(), userSession.getTime(),userSession.getDate());
 	         adapter.close();      
     	} catch (Exception e) {
     		e.printStackTrace();

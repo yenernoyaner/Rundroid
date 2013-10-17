@@ -22,7 +22,7 @@ public class DBAdapterForUser
     
     private static final String DATABASE_NAME = "runout";
     private static final String DATABASE_TABLE = "user";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     private static final String DATABASE_CREATE =
         "create table user (_id integer primary key autoincrement, "

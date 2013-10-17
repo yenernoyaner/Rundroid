@@ -9,6 +9,7 @@ public class UserSession implements Serializable {
 	public String distance;
 	public String tempo;
 	public String time;
+	public Long date;
 	
 	public UserSession() {
 		super();
@@ -55,6 +56,17 @@ public class UserSession implements Serializable {
 	public void setTime(String time) {
 		this.time = time;
 	}
+
+
+	public Long getDate() {
+		return date;
+	}
+
+
+	public void setDate(Long date) {
+		this.date = date;
+	}
+	
 	
 	
 }

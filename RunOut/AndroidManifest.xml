@@ -44,6 +44,12 @@
         <activity
             android:name="com.syyazilim.runout.activity.ResultActivity"
             android:label="@string/app_name" />
+        <activity
+            android:name="com.syyazilim.runout.activity.SessionHistoryListActivity"
+            android:label="@string/app_name" />
+        <activity
+            android:name="com.syyazilim.runout.activity.SessionHistoryDetailActivity"
+            android:label="@string/app_name" />
     </application>
 
 </manifest>

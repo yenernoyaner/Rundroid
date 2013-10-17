@@ -27,6 +27,7 @@ import com.actionbarsherlock.app.SherlockListActivity;
 import com.actionbarsherlock.internal.view.menu.ActionMenuView;
 import com.actionbarsherlock.internal.widget.IcsSpinner;
 import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.actionbarsherlock.view.SubMenu;
 import com.syyazilim.runout.R;
@@ -100,22 +101,27 @@ public class MainActivity extends SherlockActivity implements View.OnClickListen
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		SubMenu sub = menu.addSubMenu("MENU");
-		sub.add(0, 1, 0, "Settings");
-		sub.add(0, 2, 0, "Log Out");
+		sub.add(0,1,0,"History");
+		sub.add(0, 2, 0, "Settings");
+		sub.add(0, 3, 0, "Log Out");
 		sub.getItem().setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
 		return true;
 	}
-
+	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-
+		Intent intent;
 		switch (item.getItemId()) {
 		case 1:
-			Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
+			 intent = new Intent(getApplicationContext(),SessionHistoryListActivity.class);
+			 startActivity(intent);
+			 return true;
+		case 2:
+			intent = new Intent(getApplicationContext(), SettingsActivity.class);
 			startActivity(intent);
 			return true;
-		case 2:
-			System.exit(1);
+		case 3:
+			System.exit(1);			
 			return true;
 		}
 		return false;
