@@ -19,9 +19,9 @@ public class GPSTracker extends Service implements LocationListener {
 	boolean isNetworkEnabled = false;
 	boolean canGetLocation = false;
 
-	Location currentLocation; 
-	Location previousLocaiton;
-	Location startLocation;
+	Location currentLocation=null; 
+	Location previousLocaiton=null;
+	Location startLocation=null;
 	double latitude; 
 	double longitude;	
 	float currentDistance;
@@ -40,7 +40,7 @@ public class GPSTracker extends Service implements LocationListener {
 		getLocation();
 	}
 
-	public Location getLocation() {
+	public void getLocation() {
 		try {
 			locationManager = (LocationManager) mContext.getSystemService(LOCATION_SERVICE);
 
@@ -52,27 +52,26 @@ public class GPSTracker extends Service implements LocationListener {
 				//showSettingsAlert();
 			} else {
 				this.canGetLocation = true;						
-				if (isGPSEnabled) {
-					if (startLocation == null) {
-						locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, MIN_TIME_BW_UPDATES, MIN_DISTANCE_CHANGE_FOR_UPDATES,
-								this);
+				if (isGPSEnabled) {					
+						if(locationManager!=null){
+							locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, MIN_TIME_BW_UPDATES, MIN_DISTANCE_CHANGE_FOR_UPDATES,
+								this);						
 						Log.d("GPS Enabled", "GPS Enabled");
-						if (locationManager != null) {
+						
 							startLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 							if (startLocation != null) {
 								latitude = startLocation.getLatitude();
 								longitude = startLocation.getLongitude();
 							}
 						}
-					}
-				}
+					}				
 			}
 
 		} catch (Exception e) {
+			this.canGetLocation = false;
 			e.printStackTrace();
 		}
 
-		return currentLocation;
 	}
 
 	public double getLatitude() {
@@ -132,8 +131,7 @@ public class GPSTracker extends Service implements LocationListener {
 
 	@Override
 	public void onLocationChanged(Location location) {
-		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, MIN_TIME_BW_UPDATES, MIN_DISTANCE_CHANGE_FOR_UPDATES,
-								this);
+		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, MIN_TIME_BW_UPDATES, MIN_DISTANCE_CHANGE_FOR_UPDATES,this);
 		currentSpeed = location.getSpeed();
 		currentLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 		currentDistance = startLocation.distanceTo(currentLocation);
