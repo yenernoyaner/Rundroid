@@ -127,8 +127,7 @@ public class MainActivity extends SherlockActivity implements View.OnClickListen
 			startActivity(intent);
 			return true;
 		default:
-			return super.onOptionsItemSelected(item);
-		
+			return super.onOptionsItemSelected(item);		
 	}
 }
 
