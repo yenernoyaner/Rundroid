@@ -43,22 +43,20 @@ public class RegistrationActivity extends Activity implements OnClickListener {
     	adapter.open();   
     	SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
     	String userloggedin = preferences.getString("userloggedin", "false");
-    	if(userloggedin.equals("true")){
-    		 user = (User) adapter.getLastUser(); 	
+    	 user = (User) adapter.getLastUser(); 	
+    	if(user!=null){
     		 Intent intent = new Intent(getApplicationContext(),MainActivity.class);
              intent.putExtra("com.syyazilim.runout.currentuser", user);
              startActivity(intent);   
-             this.finish();
-    	}
-    	
-    	 super.onCreate(savedInstanceState);      
-        setContentView(R.layout.registration); 
-             
-      
-        ((Button) findViewById(R.id.signup)).setOnClickListener(this);      
-    }
+			this.finish();
+		}
 
-    @Override
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.registration);
+		((Button) findViewById(R.id.signup)).setOnClickListener(this);
+	}
+
+	@Override
     public void onClick(View view) {
         if (view != null) {
             switch (view.getId()) {
@@ -76,13 +74,7 @@ public class RegistrationActivity extends Activity implements OnClickListener {
     
     @Override 
     public void onStop(){
-    	super.onStop();
-    	/*((TextView)findViewById(R.id.editText)).setText("");
-    	((TextView)findViewById(R.id.editText2)).setText("");
-    	((TextView)findViewById(R.id.editText3)).setText("");
-    	((TextView)findViewById(R.id.editText4)).setText("");
-    	((TextView)findViewById(R.id.editText5)).setText("");  */ 
-    	  adapter.close();
+    	super.onStop();    	
     }
     
     public boolean saveUserToDBandSharedPreferences() {
