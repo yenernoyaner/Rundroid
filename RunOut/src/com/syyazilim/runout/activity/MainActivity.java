@@ -115,17 +115,22 @@ public class MainActivity extends SherlockActivity implements View.OnClickListen
 		case 1:
 			 intent = new Intent(getApplicationContext(),SessionHistoryListActivity.class);
 			 startActivity(intent);
-			 return true;
+			 return true;			 
 		case 2:
 			intent = new Intent(getApplicationContext(), SettingsActivity.class);
 			startActivity(intent);
 			return true;
 		case 3:
-			System.exit(1);			
+			intent = new Intent(Intent.ACTION_MAIN);
+			intent.addCategory(Intent.CATEGORY_HOME);
+			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			startActivity(intent);
 			return true;
-		}
-		return false;
+		default:
+			return super.onOptionsItemSelected(item);
+		
 	}
+}
 
 	@Override
 	public void onClick(View view) {

@@ -71,18 +71,23 @@ public class ResultActivity extends Activity implements View.OnClickListener {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle presses on the action bar items
-        switch (item.getItemId()) {
-            case R.id.action_settings:
-                Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
-                startActivity(intent);
-                return true;
-            case R.id.action_log_out:
-
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
+    	Intent intent;
+		switch (item.getItemId()) {
+		case 1:
+			 intent = new Intent(getApplicationContext(),SessionHistoryListActivity.class);
+			 startActivity(intent);
+			 return true;
+		case 2:
+			intent = new Intent(getApplicationContext(), SettingsActivity.class);
+			startActivity(intent);
+			return true;
+		case 3:
+			System.exit(0);			
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
+		
+	}
     }
 
     @Override
