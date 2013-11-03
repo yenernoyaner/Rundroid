@@ -1,11 +1,14 @@
 package com.syyazilim.runout.activity;
 
+import com.actionbarsherlock.internal.widget.IcsAdapterView;
+import com.actionbarsherlock.internal.widget.IcsAdapterView.OnItemSelectedListener;
 import com.syyazilim.runout.R;
 import com.syyazilim.runout.R.id;
 import com.syyazilim.runout.R.layout;
 import com.syyazilim.runout.R.string;
 import com.syyazilim.runout.database.DBAdapterForUser;
 import com.syyazilim.runout.domain.User;
+import com.syyazilim.runout.listener.CustomOnItemSelectedListener;
 
 import android.app.Activity;
 import android.content.Context;
@@ -24,6 +27,7 @@ import android.widget.Chronometer;
 import android.widget.Chronometer.OnChronometerTickListener;
 import android.widget.EditText;
 import android.widget.NumberPicker;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,7 +38,7 @@ public class RegistrationActivity extends Activity implements OnClickListener {
 	NumberPicker numberPickerForTall;
 	NumberPicker numberPickerForWeight;
 	boolean  userSaved = false;
-	
+	private Spinner spinner1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,16 +88,19 @@ public class RegistrationActivity extends Activity implements OnClickListener {
     		 String surname = ((TextView)findViewById(R.id.editText3)).getText().toString();
     		 String weight = ((TextView)findViewById(R.id.editText4)).getText().toString();
     		 String tall = ((TextView)findViewById(R.id.editText5)).getText().toString();
+    		 String sex = ((Spinner)findViewById(R.id.spinner_sex)).getSelectedItem().toString();
     		 if(userName.equals("") || name.equals("") || surname.equals("")){
     			 Toast.makeText(getApplicationContext(), R.string.login_warning, 20).show();
     			 return false;
     		 }  
+    		 user = new User();
 	         user.setUsername(userName);
 	         user.setName(name);
 	         user.setSurname(surname);
 	         user.setWeight(weight);
 	         user.setTall(tall);
-	         adapter.insertUser(user.getUsername(), user.getName(), user.getSurname(), user.getWeight(), user.getTall());
+	         user.setSex(sex);
+	         adapter.insertUser(user.getUsername(), user.getName(), user.getSurname(), user.getWeight(), user.getTall(),user.getSex());
 	         adapter.close();
 	         SharedPreferences sharedPreferences = PreferenceManager
                      .getDefaultSharedPreferences(this);
@@ -108,6 +115,13 @@ public class RegistrationActivity extends Activity implements OnClickListener {
     	
     	return true;
     }
+    
+    public void addListenerOnSpinnerItemSelection() {
+    	spinner1 = (Spinner) findViewById(R.id.spinner_sex);
+    	spinner1.setOnItemSelectedListener(new CustomOnItemSelectedListener());
+      }
+
+
     }
     
     

@@ -1,6 +1,7 @@
 package com.syyazilim.runout.database;
 
 import com.syyazilim.runout.domain.User;
+import com.syyyazilim.runout.constants.RundroidConstants;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -19,16 +20,19 @@ public class DBAdapterForUser
     public static final String KEY_WEIGHT = "weight";
     public static final String KEY_TALL = "height";
     private static final String TAG = "DBAdapter";
+    private static final String KEY_SEX = "sex";
     
     private static final String DATABASE_NAME = "runout";
     private static final String DATABASE_TABLE = "user";
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = RundroidConstants.Database.databaseVersionId.intValue();
 
     private static final String DATABASE_CREATE =
         "create table user (_id integer primary key autoincrement, "
         + "username text not null, name text not null, surname text not null," 
-        + "weight text not null, height text not null);";
-        
+        + "weight text not null, height text not null,sex text not null);";
+     
+    
+    		
     private final Context context; 
     
     private DatabaseHelper DBHelper;
@@ -60,8 +64,9 @@ public class DBAdapterForUser
             Log.w(TAG, "Upgrading database from version " + oldVersion 
                     + " to "
                     + newVersion + ", which will destroy all old data");
-            db.execSQL("DROP TABLE IF EXISTS user");
-            onCreate(db);
+            //db.execSQL("DROP TABLE IF EXISTS user");
+           // onCreate(db);
+          
         }
     }    
     
@@ -79,7 +84,7 @@ public class DBAdapterForUser
     }
     
     //---insert a user into the database---
-    public long insertUser(String username, String name, String surname, String weight, String tall) 
+    public long insertUser(String username, String name, String surname, String weight, String tall,String sex) 
     {
         ContentValues initialValues = new ContentValues();
         initialValues.put(KEY_USERNAME, username);
@@ -87,6 +92,7 @@ public class DBAdapterForUser
         initialValues.put(KEY_SURNAME, surname);
         initialValues.put(KEY_WEIGHT, weight);
         initialValues.put(KEY_TALL, tall);
+        initialValues.put(KEY_SEX,sex);
         return db.insert(DATABASE_TABLE, null, initialValues);
     }
 
@@ -107,13 +113,14 @@ public class DBAdapterForUser
                 		KEY_NAME,
                 		KEY_SURNAME,
                 		KEY_WEIGHT,
-                		KEY_TALL
+                		KEY_TALL,
+                		KEY_SEX
                 		}, 
                 		KEY_ROWID + "=" + rowId, 
                 		null,
                 		null, 
                 		null, 
-                		null, 
+                		null,
                 		null);
         if (mCursor != null) {
             mCursor.moveToFirst();
@@ -144,13 +151,14 @@ public class DBAdapterForUser
     		user.setSurname(c.getString(3));
     		user.setTall(c.getString(4));
     		user.setWeight(c.getString(5));
+    		user.setSex(c.getString(6));
     	}
     	return user;
     }
 
     //---updates a user---
     public boolean updateUser(long rowId, String username,String name, 
-    String surname, String weight, String tall) 
+    String surname, String weight, String tall, String sex) 
     {
         ContentValues args = new ContentValues();
         args.put(KEY_USERNAME, username);
@@ -158,6 +166,7 @@ public class DBAdapterForUser
         args.put(KEY_SURNAME, surname);
         args.put(KEY_WEIGHT, weight);
         args.put(KEY_TALL, tall);
+        args.put(KEY_SEX, sex);
         return db.update(DATABASE_TABLE, args, 
                          KEY_ROWID + "=" + rowId, null) > 0;
     }

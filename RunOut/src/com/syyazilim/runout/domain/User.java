@@ -12,6 +12,7 @@ public class User  implements Serializable{
 	private String surname;
 	private String weight;
 	private String tall;
+	private String sex;
 	public long getId() {
 		return id;
 	}
@@ -47,6 +48,12 @@ public class User  implements Serializable{
 	}
 	public void setTall(String tall) {
 		this.tall = tall;
+	}
+	public String getSex() {
+		return sex;
+	}
+	public void setSex(String sex) {
+		this.sex = sex;
 	}
 	
 

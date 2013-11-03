@@ -85,6 +85,13 @@
             android:id="@+id/heightForSettings"
             android:layout_gravity="left|center_vertical"/>
 
+        <Spinner
+                android:id="@+id/spinner_sex"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/sex_arrays"
+                android:prompt="@string/sex_prompt" />
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

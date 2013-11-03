@@ -120,11 +120,13 @@ public class MainActivity extends SherlockActivity implements View.OnClickListen
 			intent = new Intent(getApplicationContext(), SettingsActivity.class);
 			startActivity(intent);
 			return true;
-		case 3:
+		case 3:			
 			intent = new Intent(Intent.ACTION_MAIN);
 			intent.addCategory(Intent.CATEGORY_HOME);
 			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			startActivity(intent);
+			gps = new GPSTracker(MainActivity.this);
+			gps.stopUsingGPS();
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);		
@@ -155,16 +157,14 @@ public class MainActivity extends SherlockActivity implements View.OnClickListen
 							chronometer.start();
 			            }
 			        },3000);					
-                    
+					
 					view.setVisibility(View.INVISIBLE);
 					((Button) findViewById(R.id.main_stop_button_pause)).setVisibility(View.VISIBLE);
 					((Button) findViewById(R.id.main_stop_button_resume)).setVisibility(View.VISIBLE);
 					((Button) findViewById(R.id.main_pause_button)).setVisibility(View.VISIBLE);
 					((Button) findViewById(R.id.main_resume_button)).setVisibility(View.INVISIBLE);
-
 					((TextView) findViewById(R.id.speedCounter)).setText(String.valueOf(gps.getCurrentDistance()));
 					((TextView) findViewById(R.id.textView6)).setText(String.valueOf(gps.getCurrentSpeed()));
-
 				}
 				break;
 			case R.id.main_stop_button_pause:
@@ -211,6 +211,22 @@ public class MainActivity extends SherlockActivity implements View.OnClickListen
 		}
 	}
 
+	
+	public void cancelDelay(View view){	
+		setContentView(R.layout.main);
+		chronometer = (Chronometer) super.findViewById(R.id.chronometerCounter);
+		chronometer.setFormat("00:00:00");
+		chronometer.setBase(SystemClock.elapsedRealtime());
+		chronometer.start();
+		view.setVisibility(View.INVISIBLE);
+		((Button) findViewById(R.id.main_stop_button_pause)).setVisibility(View.VISIBLE);
+		((Button) findViewById(R.id.main_stop_button_resume)).setVisibility(View.VISIBLE);
+		((Button) findViewById(R.id.main_pause_button)).setVisibility(View.VISIBLE);
+		((Button) findViewById(R.id.main_resume_button)).setVisibility(View.INVISIBLE);
+		((TextView) findViewById(R.id.speedCounter)).setText(String.valueOf(gps.getCurrentDistance()));
+		((TextView) findViewById(R.id.textView6)).setText(String.valueOf(gps.getCurrentSpeed()));
+		
+	}
 	private void redirect(Class clazz) {
 		Intent intent = new Intent(getApplicationContext(), clazz);
 		intent.putExtra("com.syyazilim.runout.currentusersession", userSession);

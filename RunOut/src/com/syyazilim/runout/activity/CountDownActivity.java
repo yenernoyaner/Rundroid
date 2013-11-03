@@ -1,17 +1,20 @@
 package com.syyazilim.runout.activity;
 
+import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
 import com.syyazilim.runout.R;
 import com.syyazilim.runout.R.id;
 import com.syyazilim.runout.R.layout;
 import com.syyazilim.runout.R.menu;
 
-import android.app.Activity;
+
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.animation.AlphaAnimation;
@@ -21,7 +24,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class CountDownActivity extends Activity {
+public class CountDownActivity extends SherlockActivity {
 
 
     @Override
@@ -35,7 +38,7 @@ public class CountDownActivity extends Activity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.main, (android.view.Menu) menu);
         return true;
     }
 
@@ -48,14 +51,28 @@ public class CountDownActivity extends Activity {
                 startActivity(intent);
                 return true;
             case R.id.action_log_out:
-
+                
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
+    
+    @Override 
+    public boolean  onTouchEvent(MotionEvent event) {
+    	/*switch(event.getAction()){
+    	case MotionEvent.ACTION_DOWN:
+    		 new MainActivity().cancelDelay(this.getContentView(R.layout.main));
+    	}*/
+    	return true;
+    }
 
-    private void countDown(final TextView tv, final int count) {
+    private View getContentView(int main) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	private void countDown(final TextView tv, final int count) {
         if (tv != null) {
             if (count == 0) {
                 tv.setText(""); //Note: the TextView will be visible again here.

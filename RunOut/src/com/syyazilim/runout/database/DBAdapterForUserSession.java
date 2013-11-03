@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.syyazilim.runout.domain.UserSession;
+import com.syyyazilim.runout.constants.RundroidConstants;
 
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
@@ -27,7 +28,7 @@ public class DBAdapterForUserSession {
     
     private static final String DATABASE_NAME = "runout";
     private static final String DATABASE_TABLE = "user_session";
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION =5;// RundroidConstants.Database.databaseVersionId.intValue();
     
     private static final String DATABASE_CREATE =
             "create table user_session (_id integer primary key autoincrement, "
@@ -65,7 +66,7 @@ public class DBAdapterForUserSession {
             Log.w(TAG, "Upgrading database from version " + oldVersion 
                     + " to "
                     + newVersion + ", which will destroy all old data");
-            db.execSQL("DROP TABLE IF EXISTS titles");
+            //db.execSQL("DROP TABLE IF EXISTS titles");
             onCreate(db);
         }
     }    

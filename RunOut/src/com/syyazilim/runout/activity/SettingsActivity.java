@@ -5,6 +5,7 @@ import com.syyazilim.runout.R.id;
 import com.syyazilim.runout.R.layout;
 import com.syyazilim.runout.database.DBAdapterForUser;
 import com.syyazilim.runout.domain.User;
+import com.syyazilim.runout.listener.CustomOnItemSelectedListener;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +22,7 @@ public class SettingsActivity extends Activity implements OnClickListener {
 
 	 User user ;
 	 DBAdapterForUser adapter ;
+	 private Spinner spinner1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +35,7 @@ public class SettingsActivity extends Activity implements OnClickListener {
         ((TextView) findViewById(R.id.surnameForSettings)).setText(user.getSurname());
         ((TextView) findViewById(R.id.weightForSettings)).setText(user.getWeight());
         ((TextView) findViewById(R.id.heightForSettings)).setText(user.getTall());
+        ((Spinner) findViewById(R.id.spinner_sex)).setSelection(user.getSex().equals("Male")?0:1);        
     }
 
     @Override
@@ -64,6 +68,7 @@ public class SettingsActivity extends Activity implements OnClickListener {
 		 String surname = ((TextView)findViewById(R.id.surnameForSettings)).getText().toString();
 		 String weight = ((TextView)findViewById(R.id.weightForSettings)).getText().toString();
 		 String tall = ((TextView)findViewById(R.id.heightForSettings)).getText().toString();
+		 String sex = ((Spinner)findViewById(R.id.spinner_sex)).getSelectedItem().toString();
 		 if(userName.equals("") || name.equals("") || surname.equals("")){
 			 Toast.makeText(getApplicationContext(), R.string.login_warning, 20).show();
 			 return false;
@@ -73,7 +78,8 @@ public class SettingsActivity extends Activity implements OnClickListener {
          user.setSurname(surname);
          user.setWeight(weight);
          user.setTall(tall);
-         adapter.updateUser(user.getId(),user.getUsername(), user.getName(), user.getSurname(), user.getWeight(), user.getTall());
+         user.setSex(sex);
+         adapter.updateUser(user.getId(),user.getUsername(), user.getName(), user.getSurname(), user.getWeight(), user.getTall(),user.getSex());
          adapter.close();
     
     } catch (Exception e) {
@@ -82,5 +88,10 @@ public class SettingsActivity extends Activity implements OnClickListener {
 	}
         return true;
    }
+    
+    public void addListenerOnSpinnerItemSelection() {
+    	spinner1 = (Spinner) findViewById(R.id.spinner_sex);
+    	spinner1.setOnItemSelectedListener(new CustomOnItemSelectedListener());
+      }
 }
 

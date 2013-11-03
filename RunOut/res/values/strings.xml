@@ -11,11 +11,11 @@
     <string name="pause">Pause</string>
     <string name="resume">Resume</string>
     <string name="login_warning">must provide user info</string> 
-    <string-array name="items">
-        <item>SELECT BOOKMARK TYPE</item>
-        <item>TYPE-1</item>
-        <item>TYPE-2</item>
-        <item>TYPE-3</item>
-    </string-array>
+    <string name="sex_prompt">Choose sex</string>
+    <string-array name="sex_arrays">
+        <item>Male</item>
+        <item>Female</item>
+   </string-array>
+ 
 
 </resources>

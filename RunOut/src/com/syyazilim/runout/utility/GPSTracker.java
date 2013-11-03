@@ -5,6 +5,7 @@ import android.app.Service;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.location.GpsStatus.Listener;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -114,8 +115,9 @@ public class GPSTracker extends Service implements LocationListener {
 	
 	 public void stopUsingGPS(){
 	        if(locationManager != null){
-	            locationManager.removeUpdates(GPSTracker.this);
-	        }       
+	            locationManager.removeUpdates(this);
+	            locationManager=null;
+	          }       
 	    }
 
 	/**
